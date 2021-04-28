@@ -1,55 +1,59 @@
 <div class="container-fluid">
 
     <div class="row">
+
         <div class="col-md-6" id="img-bg"></div>
-        <div class="col-md-6 mt-5 mb- 5">
-            <div class="row-d-flex justify-content-center">
+
+
+        <div class="col-md-6 mt-5 mb-5">
+
+            <div class="row d-flex justify-content-center">
                 <div class="col-md-10">
+
                     <h1 class="text-center">Cadastro</h1>
 
                     <div class="form-group">
                         <label for="nome">Nome</label>
-                        <input class="form-control" type="text" name="nome" id="nome" placeholder="Digite seu nome"></input>
+                        <input class="form-control" type="text" name="nome" id="nome" placeholder="Seu nome...">
                     </div>
-
                     <div class="form-group">
                         <label for="usuario">Usuário</label>
-                        <input class="form-control" type="text" name="usuario" id="usuario" placeholder="Digite seu usuário"></input>
+                        <input class="form-control" type="text" name="usuario" id="usuario" placeholder="Seu suário...">
                     </div>
-
                     <div class="form-group">
-                        <label for="foto">Link foto</label>
-                        <input class="form-control" type="text" name="foto" id="foto" placeholder="link foto"></input>
+                        <label for="foto">Link da Foto</label>
+                        <input class="form-control" type="foto" name="foto" id="foto" placeholder="Link da sua foto...">
                     </div>
-
                     <div class="form-group">
                         <label for="senha">Senha</label>
-                        <input class="form-control" type="password" name="senha" id="senha" placeholder="Digite sua senha"></input>
+                        <input class="form-control" type="password" name="senha" id="senha" placeholder="Senha...">
                     </div>
-
                     <div class="form-group">
-                        <label for="usuario">Confirmar Senha</label>
-                        <input class="form-control" type="password" name="confirmarSenha" id="confirmarSenha" placeholder="Confirme sua senha"></input>
-                    </div>
-
+                        <label for="confirmarSenha">Confirmar senha</label>
+                        <input class="form-control" type="password" name="confirmarSenha" id="confirmarSenha" placeholder="Confirme sua senha...">
+                    </div> 
+                    
                     <div class="form-group">
-                        <label for="tipoUsuario">Tipo de usuario</label>
-                        <select class="form-control" name="tipoUsuario" id="tipoUsuario">
-                            <option>Selecione um tipo de usuario:</option>
-                            <option value="normal">Consulmidor</option>
-                            <option value="adm">Administrador</option>
+                        <label for="tipo">Tipo de usuário</label>
+                        <select class="form-control" name="tipo" id="tipo">
+                          <option>Selecione</option>
+                          <option value="normal">Normal</option>
+                          <option value="admin">Administrador</option>
                         </select>
-                    </div>
+                      </div>
 
-                    <div class="d-flex justify-content-center">
-                        <button  type ="submit" class="btn btn-danger">Cancelar</button>
-                        <button  type ="submit"class="btn btn-success">Cadastrar</button>
-                    </div>
+                      <div class="d-flex justify-content-center">
+                        <button type="submit" class="btn btn-danger mr-4" routerLink='/entrar'>Cancelar</button>
+                        <button type="submit" class="btn btn-success">Cadastrar</button>
+                      </div>
+                    
 
                 </div>
-
             </div>
+
         </div>
-     </div>
+
+    </div>
+
 
 </div>
