@@ -1,27 +1,48 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-  
-    <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
-      <ul class="navbar-nav mr-auto d-flex align-items-center">
-        <li class="nav-item active">
-          <img src="https://avatars.githubusercontent.com/u/71860661?v=4" alt=" user image" width="50px" height="50px" class="img-fluid rounded-circle"><!-- foto -->
-        </li>
-        <li class="nav-item pl-3">
-         <p class="m-0 font-weight-bold text-white fs-16">Wellington Bezerra</p>
-        </li>
-        <li class="nav-item pl-3">
-          <a href="">
-            <p class="m-0 fs-16"><i class="fa fa-pencil-square-o text-white " aria-hidden="true"></i></p>
-          </a>
-          </li>
-        </ul>
-        <ul class="navbar-nav ml-auto d-flex align-items-center">
-          <li class="nav-item pl-3">
-            <a class="m-0 font-weight-bold text-white fs-16">Sair<i class="fa fa-sign-out" aria-hidden="true"></i></a>
-           </li>
-        </ul>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado"
+    aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
+  <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
+    <ul class="navbar-nav mr-auto d-flex align-items-center">
+      <li class="nav-item active">
+        <img src='{{foto}}' alt=" user image" width="50px" height="50px" class="img-fluid rounded-circle"><!-- foto -->
+      </li>
+      <li>
+        <a class="p-1 text-muted" href="#">Novidadades</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link fontText mr-2" href="#">Espumantes</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link fontText mr-2" href="#">Vinhos</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link fontText mr-2" href="#">Harmonização</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link fontText mr-2" href="#">Curiosidades</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link fontText mr-2" href="#">Uvas</a>
+      </li>
+    </ul>
+
+    <ul class="navbar-nav ml-auto d-flex align-items-center">
+      <li class="nav-item pl-3">
+        <div class="btn-group">
+          <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false">
+            {{nome}}
+          </button>
+          <div class="dropdown-menu dropdown-menu-right">
+            <button class="dropdown-item"  type="button" data-toggle="modal" data-target="#novaPostagem">Nova Postagem</button>
+            <button class="dropdown-item" type="button" href="#postagens">Ver Postagens</button>
+            <button (click)='sair()' class="dropdown-item" type="button">Sair</button>
+          </div>
         </div>
-  </nav>
+      </li>
+    </ul>
+  </div>
+</nav>
