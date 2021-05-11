@@ -9,7 +9,7 @@
       <li class="nav-item active">
         <img src='{{foto}}' alt=" user image" width="50px" height="50px" class="img-fluid rounded-circle"><!-- foto -->
       </li>
-      <li>
+          <li>
         <a class="p-1 text-muted" href="#">Novidadades</a>
       </li>
       <li class="nav-item">
@@ -38,7 +38,7 @@
           </button>
           <div class="dropdown-menu dropdown-menu-right">
             <button class="dropdown-item"  type="button" data-toggle="modal" data-target="#novaPostagem">Nova Postagem</button>
-            <button class="dropdown-item" type="button" href="#postagens">Ver Postagens</button>
+            <button  class="dropdown-item" type="button" routerLink='/inicio-postagem'>Ver Postagens</button>
             <button (click)='sair()' class="dropdown-item" type="button">Sair</button>
           </div>
         </div>

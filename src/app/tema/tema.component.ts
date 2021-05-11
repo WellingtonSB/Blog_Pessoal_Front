@@ -1,8 +1,8 @@
+import { TemaService } from './../service/tema.service';
+import { Tema } from './../model/Tema';
 import { Router } from '@angular/router';
 import { environment } from './../../environments/environment.prod';
 import { Component, OnInit } from '@angular/core';
-import { Tema } from '../model/Tema';
-import { TemaService } from '../service/tema.service';
 
 @Component({
   selector: 'app-tema',
@@ -11,13 +11,12 @@ import { TemaService } from '../service/tema.service';
 })
 export class TemaComponent implements OnInit {
 
-  tema:Tema = new Tema()
-  listaTemas:Tema[]
-  
+  tema: Tema = new Tema()
+  listaTemas: Tema[]
+
   constructor(
     private router: Router,
-    private temaService:TemaService
-
+    private temaService: TemaService
   ) { }
 
   ngOnInit() {
@@ -29,20 +28,18 @@ export class TemaComponent implements OnInit {
   }
 
   findAllTemas(){
-    this.temaService.getAllTema().subscribe((resp:Tema[])=>{
+    this.temaService.getAllTema().subscribe((resp: Tema[]) => {
       this.listaTemas = resp
     })
   }
 
   cadastrar(){
-    this.temaService.postTema(this.tema).subscribe((resp:Tema)=>{
-      this.tema = resp
-      alert('Tema cadastrado com sucesso!')
-      this.findAllTemas()
-      this.tema = new Tema()
-    })
+     this.temaService.postTema(this.tema).subscribe((resp: Tema)=>{
+       this.tema = resp
+       alert('Tema cadastrado com sucesso!')
+       this.findAllTemas()
+       this.tema = new Tema()
+     })
   }
-
-
 
 }

@@ -1,4 +1,3 @@
-  
 import { environment } from './../../environments/environment.prod';
 import { UserLogin } from './../model/UserLogin';
 import { HttpClient } from '@angular/common/http';
@@ -34,7 +33,6 @@ export class AuthService {
     if (environment.token != ''){
       ok = true
     }
-
     return ok
   }
 

@@ -1,152 +1,253 @@
-<div class="container-fluid">
 
-  <div class="row bg-secondary d-flex align-items-center">
-    <div class="col-md-6">
-
-      <div class="row d-flex justify-content-center">
-        <div class="col-md-6 text-white">
-          <h1 class="fs-54">Seja bem vindo(a)!</h1>
-          <h5 class="fs-18">expresse aqui os seus pensamentos e opniões!</h5>
-        </div>
-      </div>
-
-      <div class="row d-flex justify-content-center mt-3 mb-5">
-        <div class="col-md-6">
-          <button class="btn btn-light mr-2" data-toggle="modal" data-target="#novaPostagem">Nova Postagem</button>
-          <a class="btn btn-outline-light" href="#postagens">Ver Postagens</a>
-        </div>
-      </div>
-
-    </div>
-
-
-    <div class="col-md-6 d-flex justify-content-center">
-      <img src="https://i.imgur.com/H88yIo2.png" alt="" width="500px" height="500px">
-    </div>
-  </div>
-
-</div>
-
-<div class="container mb-5 mt-5" id="postagens">
-
-  <nav>
-    <div class="nav nav-tabs d-flex justify-content-center" id="nav-tab" role="tablist">
-
-      <a class="nav-item nav-link active text-secondary font-weight-bold" id="nav-todasPostagens-tab" data-toggle="tab" href="#todasPostagens" role="tab" aria-controls="nav-todasPostagens" aria-selected="true">Todas as Postagens</a>
-
-      <a (click)='findByIdUser()'  class="nav-item nav-link text-secondary font-weight-bold" id="nav-minhasPostagens-tab" data-toggle="tab" href="#minhasPostagens" role="tab" aria-controls="nav-minhasPostagens" aria-selected="false">Minhas Postagens</a>
-
-      <a class="nav-item nav-link text-secondary font-weight-bold" id="nav-postagemTema-tab" data-toggle="tab" href="#postagemTema" role="tab" aria-controls="nav-postagemTema" aria-selected="false">Postagens por tema</a>
-
-    </div>
-  </nav>
-
-  <div class="tab-content mt-5" id="nav-tabContent">
-
-    <div class="tab-pane fade show active" id="todasPostagens" role="tabpanel" aria-labelledby="nav-todasPostagens-tab">
-
-      <div class="card-columns">
-        <div class="card text-center" *ngFor='let item of listaPostagens'>
-          <div class="card-body">
-            <h5 class="card-title m-0">{{item.titulo}}</h5>
-            <small class="text-muted"> Tema: {{item.tema.descricao}}</small>
-            <p class="card-text mt-3">{{item.texto}}</p>
-            <p class="card-text"><small class="text-muted">
-              {{item.data | date: 'dd/MM/yyyy'}} às {{item.data | date: 'HH:mm'}}
-            </small></p>
-
-            <p class="card-text"><small class="text-muted">
-              by: {{item.usuario.nome}}
-            </small></p>
+<div class="container pt-5">
+    <!-- Modal -->
+    <div class="modal fade" id="novaPostagem" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado"
+      aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="TituloModalCentralizado">Nova Postagem</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+  
+            <div class="form-group">
+              <label for="titulo">Título</label>
+              <input type="text" class="form-control" id="titulo" placeholder="Digite o título">
+            </div>
+  
+            <div class="form-group">
+              <label for="texto">Texto</label>
+              <textarea class="form-control" name="texto" id="texto" rows="3"></textarea>
+            </div>
+  
+            <div class="form-group">
+              <label for="texto">Escolha um tema ou <a data-dismiss="modal" routerLink='/tema'>cadastre um novo</a>:
+              </label>
+              <select name="tema" id="tema" class="form-control">
+                <option value="">Temas</option>
+              </select>
+            </div>
+  
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn btn-success">Publicar</button>
           </div>
         </div>
       </div>
-
     </div>
+  
+    <!--jumbotron  -->
+    <div class="jumbotron p-3 p-md-5 text-white rounded bg-dark">
+      <div class="col-md-6 px-0">
+  
+        <h1 class="display-7 font-italic">Vinho para iniciantes</h1>
+        <p class="lead my-3">7 dicas para quem está começando a aprender sobre esse universo</p>
+        <p class="lead mb-0"><a href="#" class="text-white font-weight-bold">Continue lendo...</a></p>
+      </div>
+    </div>
+    <!--jumbotron  -->
+  
+    <!-- posts -->
+    <div class="row mb-2">
+      <div class="col-md-6">
 
-    <div class="tab-pane fade" id="minhasPostagens" role="tabpanel" aria-labelledby="nav-minhasPostagens-tab">
-
-      <div class="card-columns">
-        <div class="card text-center" *ngFor='let item of user.postagem'>
-          <div class="card-body">
-            <h5 class="card-title m-0">{{item.titulo}}</h5>
-            <small class="text-muted"> Tema: {{item.tema.descricao}}</small>
-            <p class="card-text mt-3">{{item.texto}}</p>
-            <p class="card-text"><small class="text-muted">
-              {{item.data | date: 'dd/MM/yyyy'}} às {{item.data | date: 'HH:mm'}}
-            </small></p>
-
+        <div class="card flex-md-row mb-4 shadow-sm h-md-250">
+          <div class="card-body d-flex flex-column align-items-start">
+            <strong class="d-inline-block mb-2 text-primary">Safras</strong>
+            <h3 class="mb-0">
+              <a class="text-dark" href="#">
+                Vinhos da África do Sul: tudo o que você precisa saber</a>
+            </h3>
+            <div class="mb-1 text-muted">12 de Nov</div>
+            <p class="card-text mb-auto">Um país relativamente novo na tradição de viticultura, mas com uma produção de
+              qualidade — não é à toa que a África do Sul está entre as 10 maiores regiões...</p>
+            <a href="#">Continue lendo...</a>
           </div>
         </div>
       </div>
-
-    </div>
-
-    <div class="tab-pane fade" id="postagemTema" role="tabpanel" aria-labelledby="nav-postagemTema-tab">
-
-
-      <div class="card-columns" *ngFor='let tema of listaTemas'>
-        <div class="card text-center" *ngFor='let item of tema.postagem'>
-          <div class="card-body">
-            <h5 class="card-title m-0">{{item.titulo}}</h5>
-            <p class="card-text mt-3">{{item.texto}}</p>
-            <p class="card-text"><small class="text-muted">
-              {{item.data | date: 'dd/MM/yyyy'}} às {{item.data | date: 'HH:mm'}}
-            </small></p>
-
-            <p class="card-text"><small class="text-muted">
-              by: {{item.usuario.nome}}
-            </small></p>
-
+  
+      <div class="col-md-6">
+        <div class="card flex-md-row mb-4 shadow-sm h-md-250">
+          <div class="card-body d-flex flex-column align-items-start">
+            <strong class="d-inline-block mb-2 text-success">Curiosidades</strong>
+            <h3 class="mb-0">
+              <a class="text-dark" href="#">
+                4 podcasts sobre vinhos para você aproveitar!</a>
+            </h3>
+            <div class="mb-1 text-muted">11 de Nov</div>
+            <p class="card-text mb-auto">Nada se compara a uma degustação quando o objetivo é reconhecer as castas, as
+              texturas e os aromas — o desenvolvimento de memória sensorial se destaca e...</p>
+            <a href="#">Continue lendo...</a>
           </div>
         </div>
       </div>
-
     </div>
+    <!-- posts -->
   </div>
-
-</div>
-
-
-
-
-
-<!-- Modal -->
-<div class="modal fade" id="novaPostagem" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="TituloModalCentralizado">Nova Postagem</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-
-        <div class="form-group">
-          <label for="titulo">Título</label>
-          <input [(ngModel)]='postagem.titulo' type="text" class="form-control" id="titulo" placeholder="Digite o título">
+  
+  
+  
+  <main role="main" class="container">
+    <div class="row">
+      <div class="col-md-8 blog-main">
+        <h3 class="pb-3 mb-4 font-italic border-bottom">
+          O dossiê!
+        </h3>
+  
+        <div class="blog-post">
+          <h2 class="blog-post-title">Vinho para iniciantes: 7 dicas para quem está começando a aprender sobre esse
+            universo</h2>
+          <p class="blog-post-meta">Escrito por <a href="#">Marcos</a>, em 1 de Janeiro de 2021.</p>
+  
+          <p>Quem está despertando o interesse em conhecer a fundo o universo de uma das bebidas mais apreciadas no mundo
+            todo sempre tem muitas dúvidas. Por isso, nada é melhor que buscar informações sobre vinho para iniciantes.
+  
+            O desafio pode ser grande, mas a evolução do conhecimento e do paladar vem com tempo e estudo. </p>
+          <hr>
+  
+          <p>O desafio pode ser grande, mas a evolução do conhecimento e do paladar vem com tempo e estudo. Para ajudá-lo
+            nessa missão, trouxemos algumas dicas que colaborarão para o seu aprendizado, </p>
+          <blockquote>
+            <p>fazendo com que você possa transformar as suas <strong>degustações de vinhos </strong><a href="#"> Ficou
+                curioso? Continue a leitura e confira!</a></p>
+          </blockquote>
+          <!-- Titulo -->
+          <br>
+          <h2>1. Saiba os tipos de vinhos</h2>
+          <p>Antes de mais nada é interessante saber quais são os principais tipos de vinhos. Assim, fica mais fácil na
+            hora de escolher qual degustar. A bebida apresenta várias classificações de acordo com alguns critérios. A
+            seguir, confira quais são.</p>
+  
+          <h3>Presença de borbulhas</h3>
+          <p>Os vinhos que apresentam perlage (borbulhas) são os famosos espumantes e frisantes. Já os que não têm essa
+            característica são chamados de vinhos tranquilos. Há ainda os que têm finas borbulhas que quase não se vê, mas
+            que são sentidas no paladar, sendo então nomeados de vinhos com efeito agulha.</p>
+  
+          <pre><code>Dica: Um guia para apreciadores de espumantes</code></pre>
+  
+          <h3>Cor</h3>
+          <p>Essa é a classificação mais conhecida. É por meio da cor do vinho que identificamos muitas das peculiaridades
+            da bebida e, até mesmo, fazemos a harmonização com pratos e sobremesas.</p>
+  
+          <h3>Branco</h3>
+          <p>O vinho branco é feito a partir de uvas brancas ou de tintas sem a casca. São mais leves e refrescantes que
+            os tintos, com teor alcoólico um pouco menor e devem ser servidos mais gelados. Sua característica mais
+            marcante é a acidez elevada.</p>
+  
+          <h3>Tinto</h3>
+          <p>Os vinhos tintos são mais encorpados, elaborados com uvas de coloração avermelhadas e roxas. É um dos tipos
+            mais consumidos, sendo a presença de taninos a sua principal singularidade. </p>
+  
+          <h3>Rosé</h3>
+          <p>O vinho rosé pode ser considerado um intermediário entre o branco e o tinto. É leve, mas com muita presença.
+            Geralmente é elaborado com uvas escuras que soltam pouca tinta durante a fermentação. Mas é possível criá-lo a
+            partir da mistura de uvas brancas e tintas.</p>
+  
+          <h2>Doçura</h2>
+          <p>O teor de açúcar de um vinho é o residual após a fermentação alcoólica. Quando mais doce e madura a uva,
+            maior é o potencial alcoólico da bebida. Quanto a isso, os vinhos são classificados em secos, semi-secos,
+            suaves e licorosos, sendo o primeiro com menor teor de açúcar e o último o que apresenta mais doçura.</p>
+  
+        </div><!-- /.blog-post -->
+  
+        <br>
+        <h2>2. Conheças as uvas emblemáticas</h2>
+        <p>Antes de mais nada é interessante saber quais são os principais tipos de vinhos. Assim, fica mais fácil na hora
+          de escolher qual degustar. A bebida apresenta várias classificações de acordo com alguns critérios. A seguir,
+          confira quais são.</p>
+  
+        <p>Cada país tem suas uvas emblemáticas. São castas que se desenvolvem muito bem no terroir daquela região,
+          gerando vinhos renomados no mundo todo, com características inconfundíveis. Saiba quais são:</p>
+        <ul>
+          <li>Chile: Cabernet Sauvignon, Carménère, e Sauvignon Blanc;</li>
+          <li>Austrália: Shiraz;</li>
+          <li>Nova Zelândia: Pinot Noir e Sauvignon Blanc;</li>
+          <li>Argentina: Malbec;</li>
+          <li>França: Cabernet Franc, Cabernet Sauvignon, Pinot Noir, Chardonnay e Merlot;</li>
+          <li>Itália: Sangiovese, Barbera e Corvina Veronese;</li>
+          <li>Portugal: Touriga Nacional, Baga e Alfocheiro;</li>
+          <li>Espanha:Tempranillo;</li>
+          <li>Alemanha: Riesling.</li>
+        </ul>
+  
+        <!-- post -->
+        <h2>3.Conheça as uvas mais populares</h2>
+        <p>Podemos conhecer as características de um vinho somente sabendo com qual ou quais uvas ele foi elaborado. Cada
+          casta tem as suas particularidades que interferem diretamente no resultado da bebida. Por esse motivo é tão
+          importante entender mais sobre as variedades.</p>
+  
+        <h3>Brancas</h3>
+        <ul>
+          <li>Chardonnay,</li>
+          <li>Riesling;</li>
+          <li>Sauvignon Blanc;</li>
+          <li>Moscatel;</li>
+          <li>Verdejo;</li>
+          <li>Chenin Blanc.</li>
+        </ul>
+        <h3>Tintas</h3>
+        <ul>
+          <li>Malbec,</li>
+          <li>Cabernet Sauvignon;</li>
+          <li>Merlot;</li>
+          <li>Pinot Noir;</li>
+          <li>Syrah;</li>
+          <li>Tannat;</li>
+          <li>Tempranillo.</li>
+        </ul>
+        <!-- Post -->
+        <br>
+        <h3>4. Entenda como os vinhos são elaborados</h3>
+  
+  
+  
+  
+        <nav class="blog-pagination">
+          <a class="btn btn-outline-primary" href="#">Mais antigos</a>
+          <a class="btn btn-outline-secondary disabled" href="#">Mais novos</a>
+        </nav>
+  
+      </div><!-- /.blog-main -->
+  
+      <aside class="col-md-4 blog-sidebar">
+        <div class="p-3 mb-3 bg-light rounded">
+          <h4 class="font-italic">Sobre</h4>
+          <p class="mb-0">Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet
+            fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
         </div>
-
-        <div class="form-group">
-          <label for="texto">Texto</label>
-          <textarea [(ngModel)]='postagem.texto' class="form-control" name="texto" id="texto" rows="3"></textarea>
+  
+        <div class="p-3">
+          <h4 class="font-italic"></h4>
+          <ol class="list-unstyled mb-0">
+            <li><a href="#">Março de 2018</a></li>
+            <li><a href="#">Fevereiro de 2018</a></li>
+            <li><a href="#">Janeiro de 2018</a></li>
+            <li><a href="#">Dezembro de 2017</a></li>
+            <li><a href="#">Novembro de 2017</a></li>
+            <li><a href="#">Outubro de 2017</a></li>
+            <li><a href="#">Setembro de 2017</a></li>
+            <li><a href="#">Agosto de 2017</a></li>
+            <li><a href="#">Julho de 2017</a></li>
+            <li><a href="#">Junho de 2017</a></li>
+            <li><a href="#">Maio de 2017</a></li>
+            <li><a href="#">Abril de 2017</a></li>
+          </ol>
         </div>
-
-        <div class="form-group">
-          <label for="texto">Escolha um tema ou <a data-dismiss="modal" routerLink='/tema'>cadastre um novo</a>: </label>
-          <select name="tema" id="tema" class="form-control" [(ngModel)]='idTema' (change)='findByIdTema()'>
-            <option *ngFor='let item of listaTemas' value="{{item.id}}">
-              {{item.descricao}}
-            </option>
-          </select>
+  
+        <div class="p-3">
+          <h4 class="font-italic">Onde nos encontrar, por aí:</h4>
+          <ol class="list-unstyled">
+            <li><a href="#">GitHub</a></li>
+            <li><a href="#">LinkedIn</a></li>
+            <li><a href="#">Facebook</a></li>
+          </ol>
         </div>
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-success" (click)='publicar()' data-dismiss="modal">Publicar</button>
-      </div>
-    </div>
-  </div>
-</div>
+      </aside><!-- /.blog-sidebar -->
+  
+    </div><!-- /.row -->
+  
+  </main><!-- /.container -->

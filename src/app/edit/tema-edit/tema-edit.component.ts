@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { environment } from './../../../environments/environment.prod';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Tema } from 'src/app/model/Tema';
-import { TemaService } from 'src/app/service/tema.service';
-import { environment } from 'src/environments/environment.prod';
+import { TemaService } from './../../service/tema.service';
+import { Tema } from './../../model/Tema';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-tema-edit',
@@ -10,38 +10,36 @@ import { environment } from 'src/environments/environment.prod';
   styleUrls: ['./tema-edit.component.css']
 })
 export class TemaEditComponent implements OnInit {
-  tema:Tema=new Tema()
+
+  tema: Tema = new Tema()
 
   constructor(
-    private temaService:TemaService,
+    private temaService: TemaService,
     private router: Router,
-    private routeAtivo:ActivatedRoute
-  ) {}
+    private route: ActivatedRoute
+  ) { }
 
-  ngOnInit(){
-    if(environment.token ==''){
-      alert('Sua seção expirou, faça o login novamente') 
-       this.router.navigate(['/entrar'])
-     }
-     
-     let id = this.routeAtivo.snapshot.params['id']
-     this.findByIdTema(id)
+  ngOnInit() {
+    if(environment.token == ''){
+      this.router.navigate(['/entrar'])
+    }
+
+    let id = this.route.snapshot.params['id']
+    this.findByIdTema(id)
   }
 
-  findByIdTema(id:number){
-    this.temaService.getByIdTema(id).subscribe((resp:Tema)=>{
+  findByIdTema(id: number){
+    this.temaService.getByIdTema(id).subscribe((resp: Tema) => {
       this.tema = resp
     })
   }
 
   atualizar(){
-    this.temaService.putTema(this.tema).subscribe((resp:Tema)=>{
+    this.temaService.putTema(this.tema).subscribe((resp: Tema)=>{
       this.tema = resp
-      alert('Tema atualizado')
+      alert('Tema atualizado com sucesso!')
       this.router.navigate(['/tema'])
     })
   }
-
-
 
 }

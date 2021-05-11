@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { environment } from 'src/environments/environment.prod';
+import { environment } from './../../environments/environment.prod';
+import { Component, OnInit } from '@angular/core';
+import { Tema } from '../model/Tema';
 
 @Component({
   selector: 'app-menu',
@@ -11,22 +12,22 @@ export class MenuComponent implements OnInit {
 
   nome = environment.nome
   foto = environment.foto
-
+  id = environment.id
 
   constructor(
-    private router:Router
+    private router: Router
   ) { }
 
-  ngOnInit() {
+  ngOnInit(){
   }
+
+
   sair(){
     this.router.navigate(['/entrar'])
-    environment.token=''
-    environment.foto=''
-    environment.nome=''
-    environment.id=0
-    }
-
-
+    environment.token = ''
+    environment.nome = ''
+    environment.foto = ''
+    environment.id = 0
+  }
 
 }
